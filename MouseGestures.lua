@@ -24,13 +24,13 @@ The default settings below will be for the navigation gestures for in browsers
 
  
 -- The button your gestures are mapped to G1 = 1, G2 = 2 etc..
-gestureButtonNumber = 4;
+gestureButtonNumber = 6;
 
 -- The button navigation actions are mapped to G1 = 1, G2 = 2 etc..
 navigationButtonNumber = 5;
 
 -- The minimal horizontal/vertical distance your mouse needs to be moved for the gesture to recognize in pixels
-minimalHorizontalMovement = 200;
+minimalHorizontalMovement = 100;
 minimalVerticalMovement = 200;
 
 -- Default values for 
@@ -49,7 +49,7 @@ moveBetweenSpacesEnabled = true
 browserNavigationEnabled = true
 
 -- Toggles debugging messages
-debuggingEnabeld = false
+debuggingEnabeld = true
 
 -- Event detection
 function OnEvent(event, arg, family)
@@ -80,15 +80,18 @@ function OnEvent(event, arg, family)
 		horizontalDifference = horizontalStartingPosistion - horizontalEndingPosistion
 		verticalDifference = verticalStartingPosistion - verticalEndingPosistion
 
-		-- Determine the direction of the mouse and if the mouse moved far enough
-		if horizontalDifference > minimalHorizontalMovement then mouseMovedLeft(arg) end
-		if horizontalDifference < -minimalHorizontalMovement then mouseMovedRight(arg) end
-		if verticalDifference > minimalVerticalMovement then mouseMovedDown(arg) end
-		if verticalDifference < -minimalVerticalMovement then mouseMovedUp(arg) end
+		-- Determine the direction of the mouse and if the mouse moved far enough or just pressing the button
+		if horizontalDifference > minimalHorizontalMovement then mouseMovedLeft(arg)
+		elseif horizontalDifference < -minimalHorizontalMovement then mouseMovedRight(arg)
+		elseif verticalDifference > minimalVerticalMovement then mouseMovedDown(arg)
+		elseif verticalDifference < -minimalVerticalMovement then mouseMovedUp(arg)
+		else mouseMovedUp(arg)
+		end
+
 	end
 end
 
--- Mouese Moved
+-- Mouse Moved
 function mouseMovedUp(buttonNumber)
 	if debuggingEnabeld then OutputLogMessage("mouseMovedUp\n") end
 	
@@ -180,4 +183,3 @@ function pressTwoKeys(firstKey, secondKey)
 	ReleaseKey(firstKey)
 	ReleaseKey(secondKey)
 end
-
