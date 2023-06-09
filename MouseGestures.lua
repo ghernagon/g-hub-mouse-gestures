@@ -49,7 +49,7 @@ moveBetweenSpacesEnabled = true
 browserNavigationEnabled = true
 
 -- Toggles debugging messages
-debuggingEnabeld = true
+debuggingEnabeld = false
 
 -- Event detection
 function OnEvent(event, arg, family)
