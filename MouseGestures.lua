@@ -24,7 +24,7 @@ The default settings below will be for the navigation gestures for in browsers
 
  
 -- The button your gestures are mapped to G1 = 1, G2 = 2 etc..
-gestureButtonNumber = 6;
+gestureButtonNumber = 5;
 
 -- The button navigation actions are mapped to G1 = 1, G2 = 2 etc..
 navigationButtonNumber = 5;
@@ -80,7 +80,7 @@ function OnEvent(event, arg, family)
 		horizontalDifference = horizontalStartingPosistion - horizontalEndingPosistion
 		verticalDifference = verticalStartingPosistion - verticalEndingPosistion
 
-		-- Determine the direction of the mouse and if the mouse moved far enough or just pressing the button
+		-- Determine the direction of the mouse and if the mouse moved far enough
 		if horizontalDifference > minimalHorizontalMovement then mouseMovedLeft(arg)
 		elseif horizontalDifference < -minimalHorizontalMovement then mouseMovedRight(arg)
 		elseif verticalDifference > minimalVerticalMovement then mouseMovedDown(arg)
